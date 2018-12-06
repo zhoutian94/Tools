@@ -1,4 +1,3 @@
-package com.springmvc.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,25 +6,25 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-/** ÓÃÓÚÉú²ú·ûºÏ°¬±öºÆË¹¼ÇÒä·½·¨µÄ¸´Ï°¼Æ»®¹¤¾ßÀà
+/** ç”¨äºç”Ÿæˆç¬¦åˆè‰¾å®¾æµ©æ–¯è®°å¿†æ–¹æ³•çš„å¤ä¹ è®¡åˆ’å·¥å…·ç±»
  * @author zhout
  *
  */
 public class ReviewPlanTools {
 
 	/**
-	 * Ã¿Ìì¸´Ï°µ¥ÔªÊı
+	 * æ¯å¤©å¤ä¹ å•å…ƒæ•°
 	 */
 	private static int unitPerDay = 2;
 	/**
-	 * ×ÜµÄµ¥ÔªÊı
+	 * æ€»çš„å•å…ƒæ•°
 	 */
 	private static int sumUnit = 31;
 	
 	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	public static void main(String[] args){
 		/*
-		xÔÂxºÅ  ±³ËĞ£ºxx  ¸´Ï° xx
+		xæœˆxå·  èƒŒè¯µï¼šxx  å¤ä¹  xx
 		*/
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
@@ -33,20 +32,20 @@ public class ReviewPlanTools {
 		printReviewPlan(cal.getTime());
 	}
 	/**
-	 * Êä³ö¸´Ï°¼Æ»®
+	 * è¾“å‡ºå¤ä¹ è®¡åˆ’
 	 * <br>
-	 * 	xÔÂxºÅ  ±³ËĞ£ºxx  ¸´Ï° xx
-	 * @param firstDate ½øĞĞ¸´Ï°µÄµÚÒ»Ìì
+	 * 	xæœˆxå·  èƒŒè¯µï¼šxx  å¤ä¹  xx
+	 * @param firstDate è¿›è¡Œå¤ä¹ çš„ç¬¬ä¸€å¤©
 	 */
 	private static void printReviewPlan(Date firstDate) {
 		Map<Integer,String> weekNamesMap = new HashMap<Integer,String>();
-		weekNamesMap.put(1, "ĞÇÆÚÌì");
-		weekNamesMap.put(2, "ĞÇÆÚÒ»");
-		weekNamesMap.put(3, "ĞÇÆÚ¶ş");
-		weekNamesMap.put(4, "ĞÇÆÚÈı");
-		weekNamesMap.put(5, "ĞÇÆÚËÄ");
-		weekNamesMap.put(6, "ĞÇÆÚÎå");
-		weekNamesMap.put(7, "ĞÇÆÚÁù");
+		weekNamesMap.put(1, "æ˜ŸæœŸå¤©");
+		weekNamesMap.put(2, "æ˜ŸæœŸä¸€");
+		weekNamesMap.put(3, "æ˜ŸæœŸäºŒ");
+		weekNamesMap.put(4, "æ˜ŸæœŸä¸‰");
+		weekNamesMap.put(5, "æ˜ŸæœŸå››");
+		weekNamesMap.put(6, "æ˜ŸæœŸäº”");
+		weekNamesMap.put(7, "æ˜ŸæœŸå…­");
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(firstDate);
 		int sumDay = sumUnit/unitPerDay;
@@ -59,11 +58,11 @@ public class ReviewPlanTools {
 			setReviewPlans(tempDate,unitStart,unitEnd,reviewPlansMap);
 			int week = cal.get(Calendar.DAY_OF_WEEK);
 			if(unitStart == unitEnd){
-				System.out.print(weekNamesMap.get(week) + " " + simpleDateFormat.format(tempDate) + " ±³ËĞ:" + unitStart);
-				System.out.print(" ¸´Ï°:" + unitStart);
+				System.out.print(weekNamesMap.get(week) + " " + simpleDateFormat.format(tempDate) + " èƒŒè¯µ:" + unitStart);
+				System.out.print(" å¤ä¹ :" + unitStart);
 			}else{
-				System.out.print(weekNamesMap.get(week) + " " + simpleDateFormat.format(tempDate) + " ±³ËĞ:" + unitStart + "-"+unitEnd);
-				System.out.print(" ¸´Ï°:" + unitStart + "-"+unitEnd);
+				System.out.print(weekNamesMap.get(week) + " " + simpleDateFormat.format(tempDate) + " èƒŒè¯µ:" + unitStart + "-"+unitEnd);
+				System.out.print(" å¤ä¹ :" + unitStart + "-"+unitEnd);
 			}
 			printThisDateReviewPlan(tempDate,reviewPlansMap);
 			System.out.println("");
@@ -74,9 +73,9 @@ public class ReviewPlanTools {
 		}
 		
 	}
-	/**Êä³öÕâÒ»ÌìĞèÒª¸´Ï°µÄ¼Æ»®µ¥Ôª
-	 * @param tempDate ÕâÒ»Ìì
-	 * @param reviewPlansMap ¼Æ»®µ¥Ôª
+	/**è¾“å‡ºè¿™ä¸€å¤©éœ€è¦å¤ä¹ çš„è®¡åˆ’å•å…ƒ
+	 * @param tempDate è¿™ä¸€å¤©
+	 * @param reviewPlansMap è®¡åˆ’å•å…ƒ
 	 */
 	private static void printThisDateReviewPlan(Date tempDate, Map<String, ArrayList<String>> reviewPlansMap) {
 		ArrayList<String> plans = reviewPlansMap.get(simpleDateFormat.format(tempDate));
@@ -87,15 +86,15 @@ public class ReviewPlanTools {
 		}
 		
 	}
-	/** Éú³É ±¾´Î±³ËĞËùĞèÒª¸´Ï°µÄ¼Æ»®
-	 * @param tempDate ±¾´Î¸´Ï°µÄÈÕÆÚ
-	 * @param unitStart ¿ªÊ¼µ¥Ôª
-	 * @param unitEnd ½áÊøµ¥Ôª
-	 * @param reviewPlansMap ¸´Ï°¼Æ»®map
+	/** ç”Ÿæˆ æœ¬æ¬¡èƒŒè¯µæ‰€éœ€è¦å¤ä¹ çš„è®¡åˆ’
+	 * @param tempDate æœ¬æ¬¡å¤ä¹ çš„æ—¥æœŸ
+	 * @param unitStart å¼€å§‹å•å…ƒ
+	 * @param unitEnd ç»“æŸå•å…ƒ
+	 * @param reviewPlansMap å¤ä¹ è®¡åˆ’map
 	 */
 	private static void setReviewPlans(Date tempDate, int unitStart, int unitEnd, Map<String, ArrayList<String>> reviewPlansMap) {
 		Calendar tempCal = Calendar.getInstance();
-		int[] periods = new int[]{1,2,4,7,15};//°¬±öºÆË¹¼ÇÒä·¨
+		int[] periods = new int[]{1,2,4,7,15};//è‰¾å®¾æµ©æ–¯è®°å¿†æ³•
 		int count = 0;
 		for (int afterDay = 1; afterDay <= periods.length; afterDay++) {
 			
